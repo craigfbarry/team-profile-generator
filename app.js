@@ -6,9 +6,9 @@ const path = require("path");
 const fs = require("fs");
 
 const OUTPUT_DIR = path.resolve(__dirname, "output");
-//const outputPath = path.join(OUTPUT_DIR, "team.html");
+const outputPath = path.join(OUTPUT_DIR, "team.html");
 
-//const render = require("./lib/htmlRenderer");
+const render = require("./lib/htmlRenderer");
 
 
 // Write code to use inquirer to gather information about the development team members,
@@ -33,7 +33,7 @@ function managerPrompt(){
         },
         {
             type:       "input",
-            name:       "ManagerName",
+            name:       "ManagerOffice",
             message:    "What is your manager's office number?"
         }
     ]);
@@ -92,14 +92,19 @@ function internPrompt(){
     
 }
 async function init(){
+    let allEmployees = [];
     
     try {
+
+        
         const managerData = await managerPrompt();
-        console.log(managerData);
+        allEmployees.push(managerData)
         const engineerData = await engineerPrompt();
-        console.log(engineerData);
+        allEmployees.push(engineerData)
         const internData = await internPrompt();
-        console.log(internData);
+        allEmployees.push(internData)
+
+        console.log(allEmployees);
 
     }
     catch(err){
