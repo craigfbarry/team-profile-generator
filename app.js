@@ -97,12 +97,14 @@ async function init(){
     try {
 
         
-        const managerData = await managerPrompt();
-        allEmployees.push(managerData)
-        const engineerData = await engineerPrompt();
-        allEmployees.push(engineerData)
-        const internData = await internPrompt();
-        allEmployees.push(internData)
+        let managerData = await managerPrompt();
+        allEmployees.push(new Manager(managerData.ManagerName,managerData.ManagerID,managerData.ManagerEmail,managerData.ManagerOffice));
+
+        let engineerData = await engineerPrompt();
+        allEmployees.push(new Engineer(engineerData.EngineerName,engineerData.EngineerID,engineerData.EngineerEmail,engineerData.EngineerGithub));
+
+        let internData = await internPrompt();
+        allEmployees.push(new Intern(internData.InternName,internData.InternID,internData.InternEmail,internData.internSchool));
 
         console.log(allEmployees);
 
