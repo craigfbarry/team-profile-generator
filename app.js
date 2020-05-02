@@ -88,24 +88,55 @@ function internPrompt(){
             message:    "What was your intern's school?"
         }
     ]);
-
     
 }
+
+function employeeTypeSelector(){
+    return inquirer.prompt([
+        
+        {   
+            type:       "list",
+            name:       "selection",
+            message:    "Please add the team member type or select 'finished' when done.",
+            choices:    ["Engineer","Intern","Finished"]
+        },
+
+    ]);
+}
+
 async function init(){
     let allEmployees = [];
+    let userPromptFinished = false;
     
     try {
-
-        
+        console.log("Please add the team members."); 
         let managerData = await managerPrompt();
         allEmployees.push(new Manager(managerData.ManagerName,managerData.ManagerID,managerData.ManagerEmail,managerData.ManagerOffice));
+        do {
+        let userSelection = await employeeTypeSelector();
+        console.log(`${userSelection.selection}`);
+            switch(`${userSelection.selection}`){
 
-        let engineerData = await engineerPrompt();
-        allEmployees.push(new Engineer(engineerData.EngineerName,engineerData.EngineerID,engineerData.EngineerEmail,engineerData.EngineerGithub));
+                case "Engineer":
+                    let engineerData = await engineerPrompt();
+                    allEmployees.push(new Engineer(engineerData.EngineerName,engineerData.EngineerID,engineerData.EngineerEmail,engineerData.EngineerGithub));
+                    break;
+                case "Intern":
+                    let internData = await internPrompt();
+                    allEmployees.push(new Intern(internData.InternName,internData.InternID,internData.InternEmail,internData.internSchool));
 
-        let internData = await internPrompt();
-        allEmployees.push(new Intern(internData.InternName,internData.InternID,internData.InternEmail,internData.internSchool));
+                    break;
+                case "Finished":
+                    userPromptFinished = true;
+                    break;
+            }
+        //let engineerData = await engineerPrompt();
+        //allEmployees.push(new Engineer(engineerData.EngineerName,engineerData.EngineerID,engineerData.EngineerEmail,engineerData.EngineerGithub));
 
+        //let internData = await internPrompt();
+        //allEmployees.push(new Intern(internData.InternName,internData.InternID,internData.InternEmail,internData.internSchool));
+        }
+        while (userPromptFinished === false);
         console.log(allEmployees);
 
     }
@@ -126,12 +157,3 @@ init();
 // Hint: you may need to check if the `output` folder exists and create it if it
 // does not.
 
-// HINT: each employee type (manager, engineer, or intern) has slightly different
-// information; write your code to ask different questions via inquirer depending on
-// employee type.
-
-// HINT: make sure to build out your classes first! Remember that your Manager, Engineer,
-// and Intern classes should all extend from a class named Employee; see the directions
-// for further information. Be sure to test out each class and verify it generates an
-// object with the correct structure and methods. This structure will be crucial in order
-// for the provided `render` function to work! ```
