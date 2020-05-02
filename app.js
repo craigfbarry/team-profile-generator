@@ -15,6 +15,7 @@ const render = require("./lib/htmlRenderer");
 
 //We have 4 functions to collect user inputs. One to prompt which type is selected and 3 sets of questions to enter user data.
 //First Function to select either Engineer, Intern or confirm whether the user is finished added team members.
+
 function employeeTypeSelector(){
     return inquirer.prompt([
         
@@ -116,25 +117,24 @@ function internPrompt(){
 //All the constructed classes are pushed to an array holding all of the employees information
 
 async function init(){
-    let allEmployees = [];
+    let employees = [];
     let userPromptFinished = false;
     
     try {
         console.log("Please add the team members."); 
         let managerData = await managerPrompt();
-        allEmployees.push(new Manager(managerData.ManagerName,managerData.ManagerID,managerData.ManagerEmail,managerData.ManagerOffice));
+        employees.push(new Manager(managerData.ManagerName,managerData.ManagerID,managerData.ManagerEmail,managerData.ManagerOffice));
         do {
         let userSelection = await employeeTypeSelector();
-        console.log(`${userSelection.selection}`);
             switch(`${userSelection.selection}`){
 
                 case "Engineer":
                     let engineerData = await engineerPrompt();
-                    allEmployees.push(new Engineer(engineerData.EngineerName,engineerData.EngineerID,engineerData.EngineerEmail,engineerData.EngineerGithub));
+                    employees.push(new Engineer(engineerData.EngineerName,engineerData.EngineerID,engineerData.EngineerEmail,engineerData.EngineerGithub));
                     break;
                 case "Intern":
                     let internData = await internPrompt();
-                    allEmployees.push(new Intern(internData.InternName,internData.InternID,internData.InternEmail,internData.internSchool));
+                    employees.push(new Intern(internData.InternName,internData.InternID,internData.InternEmail,internData.internSchool));
 
                     break;
                 case "Finished":
@@ -143,7 +143,9 @@ async function init(){
             }
         }
         while (userPromptFinished === false);
-        console.log(allEmployees);
+        console.log(employees);
+        render(employees);
+
 
     }
     catch(err){
@@ -152,8 +154,11 @@ async function init(){
 }
 
 init();
-  
-// After the user has input all employees desired, call the `render` function (required
+
+//render(allEmployees);
+
+
+//call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
 // generate and return a block of HTML including templated divs for each employee!
 
