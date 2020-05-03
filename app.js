@@ -143,10 +143,13 @@ async function init(){
             }
         }
         while (userPromptFinished === false);
-        console.log(employees);
-        render(employees);
-
-
+        let MainHTML = render(employees);
+        fs.writeFileSync(outputPath, MainHTML, function(err){
+            if (err){
+                return console.log(err);
+            }
+            console.log("Success!");
+        });
     }
     catch(err){
         console.log(err)
@@ -155,12 +158,7 @@ async function init(){
 
 init();
 
-//render(allEmployees);
 
-
-//call the `render` function (required
-// above) and pass in an array containing all employee objects; the `render` function will
-// generate and return a block of HTML including templated divs for each employee!
 
 // After you have your html, you're now ready to create an HTML file using the HTML
 // returned from the `render` function. Now write it to a file named `team.html` in the
