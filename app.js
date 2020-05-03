@@ -36,22 +36,22 @@ function managerPrompt(){
         {
             type:       "input",
             name:       "ManagerName",
-            message:    "What is your manager's name?"
+            message:    "What is the manager's name?"
         },
         {
             type:       "number",
             name:       "ManagerID",
-            message:    "What is your manager's ID number?"
+            message:    "What is the manager's ID number?"
         },
         {
             type:       "input",
             name:       "ManagerEmail",
-            message:    "What is your manager's email address?"
+            message:    "What is the manager's email address?"
         },
         {
             type:       "number",
             name:       "ManagerOffice",
-            message:    "What is your manager's office number?"
+            message:    "What is the manager's office number?"
         }
     ]);
 }
@@ -123,17 +123,34 @@ async function init(){
     try {
         console.log("Please add the team members."); 
         let managerData = await managerPrompt();
+        //Validate data and if failed run the prompts again.
+        if(isNaN(managerData.ManagerID) || isNaN(managerData.ManagerOffice) || (managerData.ManagerEmail).includes("@")==false){
+            console.log("That's an invalid entry. Re-enter data.");
+            managerData = await managerPrompt();
+        }
+        //Add the data to the employees array
         employees.push(new Manager(managerData.ManagerName,managerData.ManagerID,managerData.ManagerEmail,managerData.ManagerOffice));
+
+        //Loop through the employee adding process until finished.
         do {
         let userSelection = await employeeTypeSelector();
             switch(`${userSelection.selection}`){
 
                 case "Engineer":
                     let engineerData = await engineerPrompt();
+                    if(isNaN(engineerData.EngineerID) || (engineerData.EngineerEmail).includes("@")==false){
+                        console.log("That's an invalid entry. Re-enter data.");
+                        engineerData = await engineerPrompt();
+                    }
                     employees.push(new Engineer(engineerData.EngineerName,engineerData.EngineerID,engineerData.EngineerEmail,engineerData.EngineerGithub));
                     break;
                 case "Intern":
                     let internData = await internPrompt();
+
+                    if(isNaN(internData.InternID) || (internData.InternEmail).includes("@")==false){
+                        console.log("That's an invalid entry. Re-enter data.");
+                        internData = await internPrompt();
+                    }
                     employees.push(new Intern(internData.InternName,internData.InternID,internData.InternEmail,internData.internSchool));
 
                     break;
@@ -143,7 +160,8 @@ async function init(){
             }
         }
         while (userPromptFinished === false);
-        let MainHTML = render(employees);
+        let MainHTML = render(employees).split(',').join("");
+
         fs.writeFileSync(outputPath, MainHTML, function(err){
             if (err){
                 return console.log(err);
