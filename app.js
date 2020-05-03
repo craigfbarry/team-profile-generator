@@ -39,7 +39,7 @@ function managerPrompt(){
             message:    "What is your manager's name?"
         },
         {
-            type:       "input",
+            type:       "number",
             name:       "ManagerID",
             message:    "What is your manager's ID number?"
         },
@@ -49,7 +49,7 @@ function managerPrompt(){
             message:    "What is your manager's email address?"
         },
         {
-            type:       "input",
+            type:       "number",
             name:       "ManagerOffice",
             message:    "What is your manager's office number?"
         }
@@ -66,7 +66,7 @@ function engineerPrompt(){
             message:    "What is your engineer's name?"
         },
         {
-            type:       "input",
+            type:       "number",
             name:       "EngineerID",
             message:    "What is your engineer's ID number?"
         },
@@ -94,7 +94,7 @@ function internPrompt(){
             message:    "What is your intern's name?"
         },
         {
-            type:       "input",
+            type:       "number",
             name:       "InternID",
             message:    "What is your intern's ID number?"
         },
@@ -157,12 +157,4 @@ async function init(){
 }
 
 init();
-
-
-
-// After you have your html, you're now ready to create an HTML file using the HTML
-// returned from the `render` function. Now write it to a file named `team.html` in the
-// `output` folder. You can use the variable `outputPath` above target this location.
-// Hint: you may need to check if the `output` folder exists and create it if it
-// does not.
 

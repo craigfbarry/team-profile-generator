@@ -1,12 +1,31 @@
 
+
+.container-fluid{
+    background-color: rgb(214, 18, 18);
+}
+
+.team-heading{
+
+    color: white;
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
+    background-color: black;
+
+}
+.card{
+    min-width: 300px;
+}
+
 .manager {
-    background-color: rgb(253, 221, 36);
+    background: rgb(199,171,45);
+    background: linear-gradient(0deg, rgba(199,171,45,1) 0%, rgba(250,230,46,1) 38%, rgba(249,246,23,1) 100%); 
 
 }
 .engineer {
-    background-color: rgb(23, 187, 252);
+    background: rgb(13,54,240);
+    background: linear-gradient(0deg, rgba(13,54,240,1) 0%, rgba(24,143,244,1) 32%, rgba(0,212,255,1) 100%); 
 }
 
 .intern {
-    background-color: rgb(50, 202, 19);
+    background: rgb(8,154,35);
+    background: linear-gradient(0deg, rgba(8,154,35,1) 0%, rgba(38,198,16,1) 38%, rgba(22,241,21,1) 100%); 
 }
