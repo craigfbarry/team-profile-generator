@@ -4,15 +4,37 @@
     background-color: rgb(214, 18, 18);
 }
 
-.team-heading{
 
+h1 {
+    font-family: 'Anton', sans-serif; 
+    letter-spacing: 5px;
+    
+}
+
+.team-heading{
+    
     color: white;
-    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
     background-color: black;
+    -webkit-animation: glow 1s ease-in-out infinite alternate;
+    -moz-animation: glow 1s ease-in-out infinite alternate;
+    animation: glow 1s ease-in-out infinite alternate;
 
 }
+
+/* Taken from https://www.w3schools.com/howto/howto_css_glowing_text.asp */
+@-webkit-keyframes glow {
+    from {
+        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
+      }
+      to {
+        text-shadow: 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6, 0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
+      }
+
+
+}
+
 .card{
-    min-width: 300px;
+    min-width: 320px;
 }
 
 .manager {
