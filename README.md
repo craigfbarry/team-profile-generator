@@ -2,7 +2,10 @@
 # <div align="center">Team Profile Generator</div>
 
 
- Create a Team profile page from text inputs.
+ Create a Team profile HTML page from text inputs. A Node CLI will use inquirer to gather input data for the team of employees.
+ First the manager is prompted for his details then the prompts are repeated until the all team members are added. There is a choice of employee 
+ or intern with different characteristics for each. The engineer will require a github ID while the intern requires the school they attended so classes
+ are required.Each employee has their data written to a snippet of HTML. Upon finishing these blocks are written to the team.html file in the output folder.Some input validation is present to confirm the appropriate data is entered.
 
 *****
 ## <div align="center">Table of Contents</div>
@@ -17,11 +20,11 @@
 
 * [Tests](https://github.com/craigfbarry/team-profile-generator#testing-framework)
 
-* [Technologies Used](https://github.com/craigfbarry/team-profile-generatorr#technologies-used)
+* [Technologies Used](https://github.com/craigfbarry/team-profile-generator#technologies-used)
 
 * [Author](https://github.com/craigfbarry/team-profile-generator#author)
 
-* [Github URL](https://github.com/craigfbarry/team-profile-generator#github)
+* [Github URL](https://github.com/craigfbarry/team-profile-generator#github-url)
 
 * [Acknowledgements](https://github.com/craigfbarry/team-profile-generator#acknowledgements)
 
@@ -36,7 +39,7 @@
 
 #### Usage
 
-Used to create a HTML page of team members
+Used to collect data and render a HTML page of team members from text based inputs using node js.
 
 #### License
 
@@ -52,7 +55,7 @@ None
 
 #### Technologies used
 
-        inquirer node fs npm jest classes
+        inquirer node fs npm jest
 
 #### Author
 
